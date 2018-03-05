@@ -5,6 +5,7 @@ import { Text, View } from 'react-native';
 // Make a component
 const Header = (props) => {
   const { textStyle, viewStyle } = styles;
+
   return (
     <View style={viewStyle}>
       <Text style={textStyle}>{props.headerText}</Text>
@@ -29,5 +30,6 @@ const styles = {
     fontSize: 20
   }
 };
-// Make the component availiable to other parts of the App
+
+// Make the component available to other parts of the app
 export { Header };

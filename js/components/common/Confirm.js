@@ -4,16 +4,20 @@ import { CardSection } from './CardSection';
 import { Button } from './Button';
 
 const Confirm = ({ children, visible, onAccept, onDecline }) => {
-  return(
+  const { containerStyle, textStyle, cardSectionStyle } = styles;
+
+  return (
     <Modal
       visible={visible}
       transparent
-      animationType='slide'
+      animationType="slide"
       onRequestClose={() => {}}
     >
-      <View style={styles.containerStyle}>
-        <CardSection style={styles.cardSectionStyle}>
-          <Text style={styles.textStyle}>{children}</Text>
+      <View style={containerStyle}>
+        <CardSection style={cardSectionStyle}>
+          <Text style={textStyle}>
+            {children}
+          </Text>
         </CardSection>
 
         <CardSection>
