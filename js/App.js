@@ -16,12 +16,16 @@ import {
   PixelRatio,
   TouchableHighlight,
 } from 'react-native';
-import Router from './js/Router'
-
 import {
   ViroSceneNavigator,
   ViroARSceneNavigator
 } from 'react-viro';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
+import Router from './Router';
 
 /*
  TODO: Insert your API key below
@@ -31,8 +35,8 @@ var sharedProps = {
 }
 
 // Sets the default scene you want for AR and VR
-var InitialARScene = require('./js/HelloWorldSceneAR');
-var InitialVRScene = require('./js/HelloWorldScene');
+var InitialARScene = require('./HelloWorldSceneAR');
+var InitialVRScene = require('./HelloWorldScene');
 
 var UNSET = "UNSET";
 var VR_NAVIGATOR_TYPE = "VR";
@@ -55,6 +59,16 @@ export default class ViroSample extends Component {
     this._getVRNavigator = this._getVRNavigator.bind(this);
     this._getExperienceButtonOnPress = this._getExperienceButtonOnPress.bind(this);
     this._exitViro = this._exitViro.bind(this);
+
+    const config = {
+      apiKey: 'AIzaSyBR4FTGiOcTZ5OBNi6thE0KhCDR3PaOtQM',
+      authDomain: 'manager-2328b.firebaseapp.com',
+      databaseURL: 'https://manager-2328b.firebaseio.com',
+      storageBucket: 'manager-2328b.appspot.com',
+      messagingSenderId: '193075244299'
+    };
+
+    firebase.initializeApp(config);
   }
 
   // Replace this function with the contents of _getVRNavigator() or _getARNavigator()
@@ -95,9 +109,13 @@ export default class ViroSample extends Component {
     //     </View>
     //   </View>
     // );
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
-      <Router />
-    )
+      <Provider store={store}>
+        <Router />
+      </Provider>
+    );
   }
 
   // Returns the ViroARSceneNavigator which will start the AR experience
