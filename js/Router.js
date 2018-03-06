@@ -11,7 +11,7 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar>
         <Scene key="auth">
-          {/* <Scene key="AR" component={ARSceneWrapper} title="AR Scene" /> */}
+          <Scene key="AR" component={ARSceneWrapper} title="AR Scene" />
           <Scene key="login" component={LoginForm} title="Please Login" />
         </Scene>
 

@@ -1,7 +1,4 @@
-'use strict';
-
 import React, { Component } from 'react';
-
 import {StyleSheet} from 'react-native';
 
 import {
@@ -12,19 +9,24 @@ import {
 export default class HelloWorldSceneAR extends Component {
 
   constructor() {
+    // Call parent constructor and initialise the state
     super();
 
-    // Set initial state here
     this.state = {
       text : "Initializing AR..."
     };
 
-    // bind 'this' to functions
+    // Bind 'this' to functions declare in this class so that
+    // they would reference 'this' object
     this._onInitialized = this._onInitialized.bind(this);
   }
 
+  // Render the scene using JSX
   render() {
     return (
+      // Using Viro's AR scene wrapper
+      // The viewer faces in the negative-Z direction, 
+      // so providing a Z coordinate of -1 places the object in front of the viewer
       <ViroARScene onTrackingInitialized={this._onInitialized} >
         <ViroText text={this.state.text} scale={[.5, .5, .5]} position={[0, 0, -1]} style={styles.helloWorldTextStyle} />
       </ViroARScene>
@@ -36,7 +38,6 @@ export default class HelloWorldSceneAR extends Component {
       text : "Hello World!"
     });
   }
-
 }
 
 var styles = StyleSheet.create({
