@@ -14,7 +14,8 @@ import renderIf from './renderIf';
 
 // Array of 3d models that we use in this sample. 
 const objArray = [
-  require('./res/model.obj'),
+  require('./res/chair/chair.obj'),
+  require('./res/sofa/sofa.obj'),
   require('./res/coffee_table/coffee_table.obj')];
 
 class ARSceneWrapper extends Component {
@@ -58,6 +59,11 @@ class ARSceneWrapper extends Component {
                 underlayColor={'#00000000'} >
                 <Image source={require("./res/btn_mode_objects.png")} />
             </TouchableHighlight>
+            <TouchableHighlight style={localStyles.buttons}
+                onPress={this._onDisplayObj2}
+                underlayColor={'#00000000'} >
+                <Image source={require("./res/btn_mode_objects_on.png")} />
+            </TouchableHighlight>
             </View>
         </View>
         );
@@ -95,21 +101,28 @@ class ARSceneWrapper extends Component {
     });
   }
 
-  _onDisplayDialog() {
-    Alert.alert(
-    'Choose an object',
-    'Select an object to place in the world!',
-    [
-      {text: '1', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
-      {text: '2', onPress: () => this._onShowObject(1, "flowers", .290760)},
-      {text: '3', onPress: () => this._onShowObject(3, "smile_emoji", .497823)},
-    ],
-    );
+  _onDisplayDialog = () => {
+    // Alert.alert(
+    // 'Choose an object',
+    // 'Select an object to place in the world!',
+    // [
+    //   {text: '1', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
+    //   {text: '2', onPress: () => this._onShowObject(1, "flowers", .290760)},
+    //   {text: '3', onPress: () => this._onShowObject(2, "smile_emoji", .497823)},
+    // ],
+    // );
+    this._onShowObject(0, "coffee_mug", 0)
+  }
+
+  _onDisplayObj2 = () => {
+    this._onShowObject(1, "flowers", .290760)
   }
 
   _onShowObject(objIndex, objUniqueName, yOffset) {
     this.setState({
-        viroAppProps:{...this.state.viroAppProps, displayObject: true, yOffset: yOffset, displayObjectName: objUniqueName, objectSource:objArray[objIndex]},
+        viroAppProps:{...this.state.viroAppProps, 
+          displayObject: true, yOffset: yOffset, displayObjectName: objUniqueName, 
+          objectSource:objArray[objIndex]},
     });
   }
 };

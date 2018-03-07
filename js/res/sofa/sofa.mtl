@@ -1,0 +1,15 @@
+# Exported with QuadFace Tools (0.13.1)
+# SketchUp 17.3.116
+# Model name: Hiroshima+Sofa
+
+newmtl beech
+Ka 0.000000 0.000000 0.000000
+Kd 0.925490 0.819608 0.705882
+Ks 0.330000 0.330000 0.330000
+map_Kd sofa/beech.jpg
+
+newmtl fabric
+Ka 0.000000 0.000000 0.000000
+Kd 0.776471 0.776471 0.776471
+Ks 0.330000 0.330000 0.330000
+map_Kd sofa/fabric.jpg
