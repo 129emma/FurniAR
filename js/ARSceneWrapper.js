@@ -14,10 +14,8 @@ import renderIf from './renderIf';
 
 // Array of 3d models that we use in this sample. 
 const objArray = [
-  require('./res/coffee_mug/object_coffee_mug.vrx'),
-  require('./res/object_flowers/object_flowers.vrx'),
-  require('./res/emoji_smile/emoji_smile.vrx'),
-  require('./res/model.obj')];
+  require('./res/model.obj'),
+  require('./res/coffee_table/coffee_table.obj')];
 
 class ARSceneWrapper extends Component {
     constructor() {
@@ -102,9 +100,9 @@ class ARSceneWrapper extends Component {
     'Choose an object',
     'Select an object to place in the world!',
     [
-      {text: 'Coffee Mug', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
-      {text: 'Flowers', onPress: () => this._onShowObject(1, "flowers", .290760)},
-      {text: 'Smile Emoji', onPress: () => this._onShowObject(3, "smile_emoji", .497823)},
+      {text: '1', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
+      {text: '2', onPress: () => this._onShowObject(1, "flowers", .290760)},
+      {text: '3', onPress: () => this._onShowObject(3, "smile_emoji", .497823)},
     ],
     );
   }

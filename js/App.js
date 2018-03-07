@@ -39,7 +39,6 @@ export default class ViroSample extends Component {
       </Provider>
     )
   }
-
 }
 
 module.exports = ViroSample
