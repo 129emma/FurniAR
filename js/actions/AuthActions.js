@@ -28,13 +28,17 @@ export const loginUser = ({ email, password }) => {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
-      .catch((error) => {
-        console.log(error);
+      .catch(() => loginUserFail(dispatch));
+  };
+};
 
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+export const registerUser = ({ email, password }) => {
+  return (dispatch) => {
+    dispatch({ type: LOGIN_USER });
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
-      });
   };
 };
 

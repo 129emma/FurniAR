@@ -1,6 +1,7 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
+import RegisterForm from './components/RegisterForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
@@ -11,7 +12,8 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar>
         <Scene key="auth">
-          <Scene key="AR" component={ARSceneWrapper} title="AR Scene" />
+          {/* <Scene key="AR" component={ARSceneWrapper} title="AR Scene" /> */}
+          {/* <Scene key="register" component={RegisterForm} title="AR Scene" /> */}
           <Scene key="login" component={LoginForm} title="Please Login" />
         </Scene>
 

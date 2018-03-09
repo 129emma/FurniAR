@@ -12,7 +12,6 @@ import { ViroARSceneNavigator } from 'react-viro';
 import InitialARScene from './ARPlayground';
 import renderIf from './renderIf';
 
-// Array of 3d models that we use in this sample. 
 const objArray = [
   require('./res/chair/chair.obj'),
   require('./res/sofa/sofa.obj'),
@@ -59,11 +58,6 @@ class ARSceneWrapper extends Component {
                 underlayColor={'#00000000'} >
                 <Image source={require("./res/btn_mode_objects.png")} />
             </TouchableHighlight>
-            <TouchableHighlight style={localStyles.buttons}
-                onPress={this._onDisplayObj2}
-                underlayColor={'#00000000'} >
-                <Image source={require("./res/btn_mode_objects_on.png")} />
-            </TouchableHighlight>
             </View>
         </View>
         );
@@ -102,20 +96,15 @@ class ARSceneWrapper extends Component {
   }
 
   _onDisplayDialog = () => {
-    // Alert.alert(
-    // 'Choose an object',
-    // 'Select an object to place in the world!',
-    // [
-    //   {text: '1', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
-    //   {text: '2', onPress: () => this._onShowObject(1, "flowers", .290760)},
-    //   {text: '3', onPress: () => this._onShowObject(2, "smile_emoji", .497823)},
-    // ],
-    // );
-    this._onShowObject(0, "coffee_mug", 0)
-  }
-
-  _onDisplayObj2 = () => {
-    this._onShowObject(1, "flowers", .290760)
+    Alert.alert(
+    'Choose an object',
+    'Select an object to place in the world!',
+    [
+      {text: '1', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
+      {text: '2', onPress: () => this._onShowObject(1, "flowers", .290760)},
+      {text: '3', onPress: () => this._onShowObject(2, "smile_emoji", .497823)},
+    ],
+    );
   }
 
   _onShowObject(objIndex, objUniqueName, yOffset) {
