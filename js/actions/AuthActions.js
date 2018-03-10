@@ -32,13 +32,17 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-export const registerUser = ({ email, password }) => {
+export const registerUser = ({ email, password, selectedType }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-          .then(user => loginUserSuccess(dispatch, user))
+    
+    if (selectedType === 'buyer') {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(user => loginUserSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
+    } else {
+      Actions.contact();
+    }   
   };
 };
 

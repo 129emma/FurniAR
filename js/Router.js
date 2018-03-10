@@ -6,6 +6,7 @@ import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import ARSceneWrapper from './ARSceneWrapper';
+import Contact from './components/Contact';
 
 const RouterComponent = () => {
   return (
@@ -13,20 +14,13 @@ const RouterComponent = () => {
       <Scene key="root" hideNavBar>
         <Scene key="auth">
           {/* <Scene key="AR" component={ARSceneWrapper} title="AR Scene" /> */}
-          {/* <Scene key="register" component={RegisterForm} title="AR Scene" /> */}
+          <Scene key="register" component={RegisterForm} hideNavBar />
           <Scene key="login" component={LoginForm} title="Please Login" />
         </Scene>
 
         <Scene key="main">
           <Scene key="AR" component={ARSceneWrapper} title="AR Scene" />
-          <Scene
-            onRight={() => Actions.employeeCreate()}
-            rightTitle="Add"
-            key="employeeList"
-            component={EmployeeList}
-            title="Employees"
-          />
-          <Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />
+          <Scene key="contact" component={Contact} hideNavBar />
           <Scene key="employeeEdit" component={EmployeeEdit} title="Edit Employee" />
         </Scene>
       </Scene>

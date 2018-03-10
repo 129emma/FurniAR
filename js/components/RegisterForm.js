@@ -18,8 +18,8 @@ import { Input, Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, registerUser } from '../actions';
-import FormInput from './FormInput';
-import UserTypeItem from './UserTypeItem';
+// import FormInput from './FormInput';
+// import UserTypeItem from './UserTypeItem';
 
 // Enable LayoutAnimation on Android
 UIManager.setLayoutAnimationEnabledExperimental &&
@@ -41,8 +41,8 @@ class RegisterForm extends Component {
       selectedType: null,
       fontLoaded: false,
       username: '',
-      email: '',
-      password: '',
+      // email: '',
+      // password: '',
       confirmationPassword: '',
       emailValid: true,
       passwordValid: true,
@@ -70,6 +70,7 @@ class RegisterForm extends Component {
   }
 
   signup() {
+    console.log("press");
     LayoutAnimation.easeInEaseOut()
     const usernameValid = this.validateUsername()
     const emailValid = this.validateEmail()
@@ -81,12 +82,13 @@ class RegisterForm extends Component {
       confirmationPasswordValid &&
       usernameValid
     ) {
+      console.log("hwdyj");
+      const { email, password, selectedType } = this.props;
       this.setState({ isLoading: true })
       setTimeout(() => {
         LayoutAnimation.easeInEaseOut()
         this.setState({ isLoading: false })
-        const { email, password } = this.props;
-        this.props.registerUser({ email, password });
+        this.props.registerUser({ email, password, selectedType });
       }, 1500)
     }
   }
@@ -101,7 +103,7 @@ class RegisterForm extends Component {
   }
 
   validateEmail() {
-    const { email } = this.state
+    const { email } = this.props;
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     const emailValid = re.test(email)
     LayoutAnimation.easeInEaseOut()
@@ -111,8 +113,8 @@ class RegisterForm extends Component {
   }
 
   validatePassword() {
-    const { password } = this.state
-    const passwordValid = password.length >= 8
+    const { password } = this.props;
+    const passwordValid = password.length >= 6
     LayoutAnimation.easeInEaseOut()
     this.setState({ passwordValid })
     passwordValid || this.passwordInput.shake()
@@ -120,7 +122,8 @@ class RegisterForm extends Component {
   }
 
   validateConfirmationPassword() {
-    const { password, confirmationPassword } = this.state
+    const { confirmationPassword } = this.state
+    const { password } = this.props;
     const confirmationPasswordValid = password === confirmationPassword
     LayoutAnimation.easeInEaseOut()
     this.setState({ confirmationPasswordValid })
@@ -145,9 +148,7 @@ class RegisterForm extends Component {
       selectedType,
       fontLoaded,
       confirmationPassword,
-      email,
       emailValid,
-      password,
       passwordValid,
       confirmationPasswordValid,
       username,
@@ -169,26 +170,26 @@ class RegisterForm extends Component {
             <Text style={styles.whoAreYouText}>WHO YOU ARE ?</Text>
             <View style={styles.userTypesContainer}>
               <UserTypeItem
-                label="COOL"
+                label="Buyer"
                 labelColor="#ECC841"
                 image={USER_COOL}
                 onPress={() => this.setSelectedType('parent')}
-                selected={selectedType === 'parent'}
+                selected={selectedType === 'buyer'}
               />
               <UserTypeItem
-                label="STUDENT"
+                label="Seller"
                 labelColor="#2CA75E"
                 image={USER_STUDENT}
                 onPress={() => this.setSelectedType('child')}
-                selected={selectedType === 'child'}
+                selected={selectedType === 'seller'}
               />
-              <UserTypeItem
+              {/* <UserTypeItem
                 label="HARRY POTTER"
                 labelColor="#36717F"
                 image={USER_HP}
                 onPress={() => this.setSelectedType('teacher')}
                 selected={selectedType === 'teacher'}
-              />
+              /> */}
             </View>
             <View>
               <FormInput
@@ -258,11 +259,11 @@ class RegisterForm extends Component {
               containerStyle={{ flex: -1 }}
               buttonStyle={styles.signUpButton}
               // ViewComponent={require('expo').LinearGradient}
-              linearGradientProps={{
-                colors: ['#FF9800', '#F44336'],
-                start: [1, 0],
-                end: [0.2, 0],
-              }}
+              // linearGradientProps={{
+              //   colors: ['#FF9800', '#F44336'],
+              //   start: [1, 0],
+              //   end: [0.2, 0],
+              // }}
               textStyle={styles.signUpButtonText}
               onPress={this.signup}
               disabled={isLoading}
@@ -285,6 +286,51 @@ class RegisterForm extends Component {
   }
 }
 
+export const UserTypeItem = props => {
+  const { image, label, labelColor, selected, ...attributes } = props
+  return (
+    <TouchableOpacity {...attributes}>
+      <View
+        style={[
+          styles.userTypeItemContainer,
+          selected && styles.userTypeItemContainerSelected,
+        ]}
+      >
+        <Text style={[styles.userTypeLabel, { color: labelColor }]}>
+          {label}
+        </Text>
+        <Image
+          source={image}
+          style={[
+            styles.userTypeMugshot,
+            selected && styles.userTypeMugshotSelected,
+          ]}
+        />
+      </View>
+    </TouchableOpacity>
+  )
+}
+
+export const FormInput = props => {
+  const { icon, refInput, ...otherProps } = props
+  return (
+    <Input
+      {...otherProps}
+      ref={refInput}
+      containerStyle={styles.inputContainer}
+      icon={<Icon name={icon} color="#7384B4" size={18} />}
+      inputStyle={styles.inputStyle}
+      autoFocus={false}
+      autoCapitalize="none"
+      keyboardAppearance="dark"
+      errorStyle={styles.errorInputStyle}
+      autoCorrect={false}
+      blurOnSubmit={false}
+      placeholderTextColor="#7384B4"
+    />
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -304,11 +350,11 @@ const styles = StyleSheet.create({
   signUpText: {
     color: 'white',
     fontSize: 28,
-    fontFamily: 'light',
+    // fontFamily: 'light',
   },
   whoAreYouText: {
     color: '#7384B4',
-    fontFamily: 'bold',
+    // fontFamily: 'bold',
     fontSize: 14,
   },
   userTypesContainer: {
@@ -336,7 +382,7 @@ const styles = StyleSheet.create({
   },
   userTypeLabel: {
     color: 'yellow',
-    fontFamily: 'bold',
+    // fontFamily: 'bold',
     fontSize: 11,
   },
   inputContainer: {
@@ -351,7 +397,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 10,
     color: 'white',
-    fontFamily: 'light',
+    // fontFamily: 'light',
     fontSize: 16,
   },
   errorInputStyle: {
@@ -360,34 +406,36 @@ const styles = StyleSheet.create({
     color: '#F44336',
   },
   signUpButtonText: {
-    fontFamily: 'bold',
-    fontSize: 13,
+    // fontFamily: 'bold',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   signUpButton: {
     width: 250,
     borderRadius: 50,
     height: 45,
+    backgroundColor: 'rgba(111, 202, 186, 1)',
   },
   loginHereContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   alreadyAccountText: {
-    fontFamily: 'lightitalic',
+    // fontFamily: 'lightitalic',
     fontSize: 12,
     color: 'white',
   },
   loginHereText: {
     color: '#FF9800',
-    fontFamily: 'lightitalic',
+    // fontFamily: 'lightitalic',
     fontSize: 12,
   },
 })
 
-const mapStateToProps = ({ auth }) => {
-  const { email, password } = auth;
+const mapStateToProps = state => {
+  const { email, password, selectedType } = state.auth;
 
-  return { email, password };
+  return { email, password, selectedType };
 };
 
 export default connect(mapStateToProps, {

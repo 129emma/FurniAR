@@ -11,7 +11,8 @@ const INITIAL_STATE = {
   password: '',
   user: null,
   error: '',
-  loading: false
+  loading: false,
+  selectedType: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
