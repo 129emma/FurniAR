@@ -173,14 +173,14 @@ class RegisterForm extends Component {
                 label="Buyer"
                 labelColor="#ECC841"
                 image={USER_COOL}
-                onPress={() => this.setSelectedType('parent')}
+                onPress={() => this.setSelectedType('buyer')}
                 selected={selectedType === 'buyer'}
               />
               <UserTypeItem
                 label="Seller"
                 labelColor="#2CA75E"
                 image={USER_STUDENT}
-                onPress={() => this.setSelectedType('child')}
+                onPress={() => this.setSelectedType('seller')}
                 selected={selectedType === 'seller'}
               />
               {/* <UserTypeItem
