@@ -14,10 +14,11 @@ import {
 } from 'react-native'
 // import { Font } from 'expo'
 import { Input, Button } from 'react-native-elements'
+import { Actions } from 'react-native-router-flux';
 
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, registerUser } from '../actions';
+import { emailChanged, passwordChanged, registerUser, userTypeChanged } from '../actions';
 // import FormInput from './FormInput';
 // import UserTypeItem from './UserTypeItem';
 
@@ -53,9 +54,7 @@ class RegisterForm extends Component {
     this.setSelectedType = this.setSelectedType.bind(this)
     this.validateEmail = this.validateEmail.bind(this)
     this.validatePassword = this.validatePassword.bind(this)
-    this.validateConfirmationPassword = this.validateConfirmationPassword.bind(
-      this,
-    )
+    this.validateConfirmationPassword = this.validateConfirmationPassword.bind(this)
     this.signup = this.signup.bind(this)
   }
 
@@ -82,13 +81,14 @@ class RegisterForm extends Component {
       confirmationPasswordValid &&
       usernameValid
     ) {
-      console.log("hwdyj");
       const { email, password, selectedType } = this.props;
+      const { username } = this.state;
+      console.log({selectedType});
       this.setState({ isLoading: true })
       setTimeout(() => {
         LayoutAnimation.easeInEaseOut()
         this.setState({ isLoading: false })
-        this.props.registerUser({ email, password, selectedType });
+        this.props.registerUser({ email, password, selectedType, username });
       }, 1500)
     }
   }
@@ -142,6 +142,16 @@ class RegisterForm extends Component {
     this.props.passwordChanged(text);
   }
 
+  onBuyerPress() {
+    this.setSelectedType('buyer');
+    this.props.userTypeChanged('buyer');
+  }
+
+  onSellerPress() {
+    this.setSelectedType('seller')
+    this.props.userTypeChanged('seller');
+  }
+
   render() {
     const {
       isLoading,
@@ -167,20 +177,19 @@ class RegisterForm extends Component {
             contentContainerStyle={styles.formContainer}
           >
             <Text style={styles.signUpText}>Sign up</Text>
-            <Text style={styles.whoAreYouText}>WHO YOU ARE ?</Text>
             <View style={styles.userTypesContainer}>
               <UserTypeItem
                 label="Buyer"
                 labelColor="#ECC841"
                 image={USER_COOL}
-                onPress={() => this.setSelectedType('buyer')}
+                onPress={this.onBuyerPress.bind(this)}
                 selected={selectedType === 'buyer'}
               />
               <UserTypeItem
                 label="Seller"
                 labelColor="#2CA75E"
                 image={USER_STUDENT}
-                onPress={() => this.setSelectedType('seller')}
+                onPress={this.onSellerPress.bind(this)}
                 selected={selectedType === 'seller'}
               />
               {/* <UserTypeItem
@@ -255,7 +264,7 @@ class RegisterForm extends Component {
             </View>
             <Button
               loading={isLoading}
-              text="SIGNUP"
+              text="SIGN UP"
               containerStyle={{ flex: -1 }}
               buttonStyle={styles.signUpButton}
               // ViewComponent={require('expo').LinearGradient}
@@ -271,7 +280,7 @@ class RegisterForm extends Component {
           </KeyboardAvoidingView>
           <View style={styles.loginHereContainer}>
             <Text style={styles.alreadyAccountText}>
-              Already have an account.
+              Already have an account?
             </Text>
             <Button
               text="Login here"
@@ -279,7 +288,7 @@ class RegisterForm extends Component {
               containerStyle={{ flex: -1 }}
               buttonStyle={{ backgroundColor: 'transparent' }}
               underlayColor="transparent"
-              onPress={() => Alert.alert('🔥', 'You can login here')}
+              onPress={() => Actions.login()}
             />
           </View>
         </ScrollView>
@@ -439,5 +448,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, registerUser
+  emailChanged, passwordChanged, registerUser, userTypeChanged
 })(RegisterForm);

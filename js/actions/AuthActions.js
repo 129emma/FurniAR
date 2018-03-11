@@ -5,7 +5,8 @@ import {
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER
+  LOGIN_USER,
+  USER_TYPE_CHANGED
 } from './types';
 
 export const emailChanged = (text) => {
@@ -22,6 +23,13 @@ export const passwordChanged = (text) => {
   };
 };
 
+export const userTypeChanged = text => {
+  return {
+    type: USER_TYPE_CHANGED,
+    payload: text
+  }
+}
+
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
@@ -32,17 +40,23 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
-export const registerUser = ({ email, password, selectedType }) => {
+
+export const registerUser = ({ email, password, selectedType, username }) => {
+  const { currentUser } = firebase.auth();
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
     
     if (selectedType === 'buyer') {
       firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
+          .then(user => loginUserSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
+
+      firebase.database().ref(`/users/${currentUser.uid}/buyers`)
+      .push({ username })
+
     } else {
       Actions.contact();
-    }   
+    }
   };
 };
 

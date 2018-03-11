@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Button, Spinner } from './common';
-import FormInput from './FormInput';
-import { Input } from 'react-native-elements';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -39,14 +37,10 @@ class LoginForm extends Component {
         <CardSection>
           <Input
             label="Email"
-            placeholder="me@gmail.com"
+            placeholder="email@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
             value={this.props.email}
           />
-        </CardSection>
-
-        <CardSection>
-
         </CardSection>
 
         <CardSection>
