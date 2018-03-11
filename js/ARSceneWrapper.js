@@ -11,10 +11,11 @@ import {
 import { ViroARSceneNavigator } from 'react-viro';
 import InitialARScene from './ARPlayground';
 import renderIf from './renderIf';
+import { Actions } from 'react-native-router-flux';
 
 const objArray = [
   require('./res/chair/chair.obj'),
-  require('./res/sofa/sofa.obj'),
+  require('./res/chair2.obj'),
   require('./res/coffee_table/coffee_table.obj')];
 
 class ARSceneWrapper extends Component {
@@ -79,9 +80,9 @@ class ARSceneWrapper extends Component {
 
   _renderTrackingText() {
     if(this.state.trackingInitialized) {
-      return (<View style={{position: 'absolute', backgroundColor:"#ffffff22", left: 30, right: 30, top: 30, alignItems: 'center'}}>
-        <Text style={{fontSize:12, color:"#ffffff"}}>Tracking initialized.</Text>
-      </View>);
+      // return (<View style={{position: 'absolute', backgroundColor:"#ffffff22", left: 30, right: 30, top: 30, alignItems: 'center'}}>
+      //   <Text style={{fontSize:12, color:"#ffffff"}}>Tracking initialized.</Text>
+      // </View>);
     } else {
       return (<View style={{position: 'absolute', backgroundColor:"#ffffff22", left: 30, right: 30, top:30, alignItems: 'center'}}>
         <Text style={{fontSize:12, color:"#ffffff"}}>Waiting for tracking to initialize.</Text>

@@ -14,15 +14,16 @@ const RouterComponent = () => {
     <Router>
       <Scene key="root" hideNavBar>
         <Scene key="auth">
-          {/* <Scene key="AR" component={ARSceneWrapper} title="AR Scene" /> */}
+          <Scene key="AR" component={ARSceneWrapper} hideNavBar />
           <Scene key="shoplist" component={ShopList} hideNavBar />
-          <Scene key="login" component={LoginForm} hideNavBar />
-          <Scene key="contact" component={Contact} hideNavBar />
-          <Scene key="register" component={RegisterForm} hideNavBar />
+          <Scene key="register" component={RegisterForm} hideNavBar />   
+          <Scene key="login" component={LoginForm} hideNavBar  initial/>
+          <Scene key="contact" component={Contact} hideNavBar /> 
+         
         </Scene>
 
         <Scene key="main">
-          
+          <Scene key="shoplist" component={ShopList} hideNavBar />
           <Scene key="AR" component={ARSceneWrapper} hideNavBar />
           <Scene key="employeeEdit" component={EmployeeEdit} title="Edit Employee" />
         </Scene>

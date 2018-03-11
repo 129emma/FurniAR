@@ -37,6 +37,7 @@ export const loginUser = ({ email, password }) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
       .catch(() => loginUserFail(dispatch));
+      Actions.main();
   };
 };
 
@@ -45,16 +46,18 @@ export const registerUser = ({ email, password, selectedType, username }) => {
   const { currentUser } = firebase.auth();
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-    
-    if (selectedType === 'buyer') {
-      firebase.auth().createUserWithEmailAndPassword(email, password)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(user => loginUserSuccess(dispatch, user))
           .catch(() => loginUserFail(dispatch));
-
+    
+    if (selectedType === 'buyer') {
       firebase.database().ref(`/users/${currentUser.uid}/buyers`)
-      .push({ username })
+      .push({ username, email, password })
+      Actions.main();
 
     } else {
+      firebase.database().ref(`/users/${currentUser.uid}/sellers`)
+      .push({ username, email, password })
       Actions.contact();
     }
   };
@@ -69,6 +72,4 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
-
-  Actions.main();
 };
