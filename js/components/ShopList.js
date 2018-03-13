@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Dimensions, ScrollView, TouchableWithoutFeedbac
 import { Avatar, Button } from 'react-native-elements'
 
 // import { Font } from 'expo';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { Actions } from 'react-native-router-flux';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -69,22 +69,22 @@ export default class ShopList extends Component {
     if (positive) {
       return (
         <View style={{ backgroundColor: 'rgba(220,230,218,1)', width: 70, height: 28, borderRadius: 5, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginLeft: 10}}>
-          {/* <Icon
+          <Icon
             name='md-archive'
             color='green'
             size={18}
-          /> */}
+          />
           <Text style={{color: 'green', fontSize: 13, marginLeft: 5}}>{value}</Text>
         </View>
       );
     } else {
       return (
         <View style={{ backgroundColor: 'rgba(244,230,224,1)', width: 70, height: 28, borderRadius: 5, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', marginLeft: 10}}>
-          {/* <Icon
+          <Icon
             name='md-arrow-dropdown'
             color='red'
             size={25}
-          /> */}
+          />
           <Text style={{color: 'red', fontSize: 13, marginLeft: 5}}>{value}</Text>
         </View>
       );
@@ -116,11 +116,11 @@ export default class ShopList extends Component {
           {this.renderValue(user)}
           <View style={{ backgroundColor: 'rgba(222,222,222,1)', width: 35, height: 28, borderRadius: 5, justifyContent: 'center', alignItems: 'center', marginHorizontal: 10}}>
           
-            {/* <Icon
+            <Icon
               name='md-person'
               color='gray'
               size={20}
-            /> */}
+            />
           
           </View>
         </View>

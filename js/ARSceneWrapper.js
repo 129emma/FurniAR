@@ -14,9 +14,11 @@ import renderIf from './renderIf';
 import { Actions } from 'react-native-router-flux';
 
 const objArray = [
-  require('./res/chair/chair.obj'),
-  require('./res/chair2.obj'),
-  require('./res/coffee_table/coffee_table.obj')];
+  require('./res/Grey_sofa/Grey_sofa.obj'),
+  require('./res/Wood_chair/Wood_chair.obj'),
+  require('./res/Old_chair/Old_chair.obj'),
+  require('./res/Chinese_table/Chinese_table.obj'),
+  require('./res/Coffee_table/Coffee_table.obj')];
 
 class ARSceneWrapper extends Component {
     constructor() {
@@ -101,9 +103,11 @@ class ARSceneWrapper extends Component {
     'Choose an object',
     'Select an object to place in the world!',
     [
-      {text: '1', onPress: () => this._onShowObject(0, "coffee_mug", 0)},
-      {text: '2', onPress: () => this._onShowObject(1, "flowers", .290760)},
-      {text: '3', onPress: () => this._onShowObject(2, "smile_emoji", .497823)},
+      {text: 'Gray Sofa', onPress: () => this._onShowObject(0, "Gray_sofa", 0)},
+      {text: 'Modern Chair', onPress: () => this._onShowObject(1, "Modern_chair", 0)},
+      {text: 'Vintage Chair', onPress: () => this._onShowObject(2, "Vintage_chair", 0)},
+      {text: 'Chinese Table', onPress: () => this._onShowObject(3, "Chinese_table", 0)},
+      {text: 'Coffee Table', onPress: () => this._onShowObject(4, "Coffee_table", 0)},
     ],
     );
   }

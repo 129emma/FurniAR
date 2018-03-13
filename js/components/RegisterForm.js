@@ -239,7 +239,7 @@ class RegisterForm extends Component {
                 secureTextEntry
                 returnKeyType="next"
                 displayError={!passwordValid}
-                errorMessage="Please enter at least 8 characters"
+                errorMessage="Please enter at least 6 characters"
                 onSubmitEditing={() => {
                   this.validatePassword()
                   this.confirmationPasswordInput.focus()
