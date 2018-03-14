@@ -1,0 +1,37 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl FrontColor
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Color_M00
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl Metal_Corrogated_Shiny
+Ka 0.000000 0.000000 0.000000
+Kd 0.756863 0.756863 0.756863
+Ks 0.330000 0.330000 0.330000
+map_Kd White_chair/Metal_Corrogated_Shiny.jpg
+
+newmtl _5
+Ka 0.000000 0.000000 0.000000
+Kd 0.709804 0.517647 0.278431
+Ks 0.330000 0.330000 0.330000
+map_Kd White_chair/_5.jpg
+
+newmtl Wood_Board_Cork
+Ka 0.000000 0.000000 0.000000
+Kd 0.843137 0.788235 0.450980
+Ks 0.330000 0.330000 0.330000
+map_Kd White_chair/Wood_Board_Cork.jpg
+
+newmtl Color_M09
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+

@@ -14,11 +14,31 @@ import renderIf from './renderIf';
 import { Actions } from 'react-native-router-flux';
 
 const objArray = [
-  require('./res/Grey_sofa/Grey_sofa.obj'),
-  require('./res/Wood_chair/Wood_chair.obj'),
-  require('./res/Old_chair/Old_chair.obj'),
-  require('./res/Chinese_table/Chinese_table.obj'),
-  require('./res/Coffee_table/Coffee_table.obj')];
+  require('./res/White_chair.obj'),
+  require('./res/Wood_chair.obj'),
+  require('./res/Old_chair.obj'),
+  require('./res/Chinese_table.obj'),
+  require('./res/Coffee_table.obj')];
+
+var textureArray = [
+  [require('./res/White_chair.mtl'),
+   require('./res/White_chair/_5.jpg'),
+   require('./res/White_chair/Metal_Corrogated_Shiny.jpg'),
+   require('./res/White_chair/Wood_Board_Cork.jpg')],
+  [require('./res/Wood_chair.mtl'),
+   require('./res/Wood_chair/b113_BS.jpg'),
+   require('./res/Wood_chair/M_12_s21.jpg')],
+  [require('./res/Old_chair.mtl'),
+   require('./res/Old_chair/_7.jpg'),
+   require('./res/Old_chair/_12.jpg')],
+  [require('./res/Chinese_table.mtl'),
+   require('./res/Chinese_table/_2.jpg'),
+   require('./res/Chinese_table/_3.jpg'),
+   require('./res/Chinese_table/Stone_Vein_Gray.jpg')],
+  [require('./res/Coffee_table.mtl'),
+   require('./res/Coffee_table/beech__light.jpg')]
+];
+
 
 class ARSceneWrapper extends Component {
     constructor() {
@@ -33,7 +53,7 @@ class ARSceneWrapper extends Component {
 
         this.state = {
         viroAppProps: {displayObject:false, 
-            objectSource:objArray[0], yOffset:0, _onLoadEnd: this._onLoadEnd, 
+            objectSource:objArray[0], textures: textureArray[0], yOffset:0, _onLoadEnd: this._onLoadEnd, 
             _onLoadStart: this._onLoadStart, _onTrackingInit:this._onTrackingInit},
         trackingInitialized: false,
 				isLoading: false,
@@ -103,7 +123,7 @@ class ARSceneWrapper extends Component {
     'Choose an object',
     'Select an object to place in the world!',
     [
-      {text: 'Gray Sofa', onPress: () => this._onShowObject(0, "Gray_sofa", 0)},
+      {text: 'White Chair', onPress: () => this._onShowObject(0, "White_chair", 0)},
       {text: 'Modern Chair', onPress: () => this._onShowObject(1, "Modern_chair", 0)},
       {text: 'Vintage Chair', onPress: () => this._onShowObject(2, "Vintage_chair", 0)},
       {text: 'Chinese Table', onPress: () => this._onShowObject(3, "Chinese_table", 0)},
@@ -116,8 +136,10 @@ class ARSceneWrapper extends Component {
     this.setState({
         viroAppProps:{...this.state.viroAppProps, 
           displayObject: true, yOffset: yOffset, displayObjectName: objUniqueName, 
-          objectSource:objArray[objIndex]},
+          objectSource:objArray[objIndex]}, textures: textureArray[objIndex],
     });
+    console.log(textureArray[objIndex]);
+    console.log(objArray[objIndex]);
   }
 };
 

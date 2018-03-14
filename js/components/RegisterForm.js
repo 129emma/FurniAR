@@ -28,7 +28,6 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 
 const USER_COOL = require('../res/user-cool.png')
 const USER_STUDENT = require('../res/user-student.png')
-const USER_HP = require('../res/user-hp.png')
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 const SCREEN_HEIGHT = Dimensions.get('window').height

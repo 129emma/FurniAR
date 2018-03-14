@@ -1,0 +1,15 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl beech__light
+Ka 0.000000 0.000000 0.000000
+Kd 0.984314 0.803922 0.572549
+Ks 0.330000 0.330000 0.330000
+map_Kd Coffee_table/beech__light.jpg
+
+newmtl _Silver_
+Ka 0.000000 0.000000 0.000000
+Kd 0.752941 0.752941 0.752941
+Ks 0.330000 0.330000 0.330000
+

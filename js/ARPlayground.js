@@ -2,9 +2,6 @@
  * Copyright (c) 2017-present, Viro Media, Inc.
  * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
  */
 import React, { Component } from 'react';
 
@@ -69,7 +66,7 @@ var ARHitTestSample = createReactClass({
         rotation={this.state.rotation}
         dragType="FixedToWorld" key={this.props.arSceneNavigator.viroAppProps.displayObjectName}>
 
-        <ViroSpotLight
+        {/* <ViroSpotLight
           innerAngle={5}
           outerAngle={20}
           direction={[0,-1,0]}
@@ -79,11 +76,12 @@ var ARHitTestSample = createReactClass({
           shadowNearZ={.1}
           shadowFarZ={6}
           shadowOpacity={.9}
-          ref={this._setSpotLightRef}/>
+          ref={this._setSpotLightRef}/> */}
 
         <Viro3DObject
           position={[0, this.props.arSceneNavigator.viroAppProps.yOffset, 0]}
           source={this.props.arSceneNavigator.viroAppProps.objectSource}
+          resources={this.props.arSceneNavigator.viroAppProps.textures}
           type = "OBJ" onLoadEnd={this._onLoadEnd} onLoadStart={this._onLoadStart}
           onRotate={this._onRotate}
           onPinch={this._onPinch} />
@@ -94,7 +92,6 @@ var ARHitTestSample = createReactClass({
             width={2.5} height={2.5}
             arShadowReceiver={true}
             ignoreEventHandling={true} />
-
       </ViroNode>
     );
     return modelArray;
@@ -145,7 +142,7 @@ var ARHitTestSample = createReactClass({
     }
 
     this.arNodeRef.setNativeProps({scale:newScale});
-    this.spotLight.setNativeProps({shadowFarZ: 6 * newScale[0]});
+    // this.spotLight.setNativeProps({shadowFarZ: 6 * newScale[0]});
   },
 
   _onLoadStart() {
