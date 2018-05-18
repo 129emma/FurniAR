@@ -1,4 +1,4 @@
-# FurnituAR
+# FurnituAR ![](http://progressed.io/bar/100?title=progress)    
 
 A mobile app that can empower users to “foresee” how furniture looks in their home utilizing Augmented Reality technology. It is available on App Store.
 
